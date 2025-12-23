@@ -9,61 +9,132 @@
       href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&display=swap"
       rel="stylesheet"
     />
+
     <style>
+      /* الخط */
       .display-font {
         font-family: "Aref Ruqaa Ink", serif;
       }
 
-      /* أنيميشن جميل وبسيط للخلفية: تكبير بطيء + حركة خفيفة */
+      /* الخلفية متحركة */
       .bg-animation {
-        background-image: url('assets/jasmin-ne-pUPIuW3qtPg-unsplash.jpg');
-        background-size: cover;
+        background-image: url("assets/jasmin-ne-pUPIuW3qtPg-unsplash.jpg");
+        background-size: 110%;
         background-position: center;
-        animation: slowZoom 40s infinite alternate ease-in-out,
-                   gentlePan 80s infinite linear;
+        animation: backgroundZoomBrightness 20s infinite ease-in-out,
+          backgroundPan 60s infinite alternate ease-in-out;
       }
 
-      @keyframes slowZoom {
-        0% { background-size: 110%; }
-        100% { background-size: 130%; }
+      @keyframes backgroundZoomBrightness {
+        0% {
+          background-size: 110%;
+          filter: brightness(1);
+        }
+        25% {
+          background-size: 115%;
+          filter: brightness(1.15);
+        }
+        50% {
+          background-size: 120%;
+          filter: brightness(1.25);
+        }
+        75% {
+          background-size: 115%;
+          filter: brightness(1.15);
+        }
+        100% {
+          background-size: 110%;
+          filter: brightness(1);
+        }
       }
 
-      @keyframes gentlePan {
-        0% { background-position: 50% 50%; }
-        50% { background-position: 60% 40%; }
-        100% { background-position: 50% 50%; }
+      @keyframes backgroundPan {
+        0% {
+          background-position: center top;
+        }
+        50% {
+          background-position: center center;
+        }
+        100% {
+          background-position: center bottom;
+        }
+      }
+
+      /* إخفاء العناصر في البداية */
+      .reveal {
+        opacity: 0;
+        transition: opacity 1s ease-in;
+      }
+
+      .reveal.show {
+        opacity: 1;
+      }
+
+      /* العنوان: ظهور حرف حرف بسلاسة + ظل */
+      /* العنوان: ظهور حرف حرف بشكل أبطأ + ظل */
+      .typewriter {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 0.15em solid #d4af37; /* caret */
+        color: #d4af37;
+        font-weight: bold;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* ظل */
+        font-size: 4rem;
+        animation: typing 6s linear forwards,
+          /* مدة أطول للكتابة → أبطأ */ blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      /* إزالة caret عند انتهاء الكتابة */
+      .typewriter.no-caret {
+        border-right: none !important;
       }
     </style>
   </head>
   <body>
-    <section
-      class="relative min-h-screen bg-animation"
-    >
+    <section class="relative min-h-screen bg-animation">
       <div class="absolute inset-0 bg-black bg-opacity-70"></div>
 
       <div
         class="relative flex flex-col md:flex-row items-center justify-between min-h-screen px-6 md:px-16 lg:px-24 py-12"
       >
         <div class="max-w-xl text-left text-white space-y-4">
+          <!-- العنوان يظهر حرف بحرف فور تحميل الصفحة -->
           <h1
-            class="text-[#D4AF37] font-bold leading-tight text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl display-font"
+            class="text-[#D4AF37] font-bold leading-tight text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl display-font typewriter"
           >
-            Welcome 2026,
+            Hello 2026,
           </h1>
 
+          <!-- باقي النصوص تظهر بعد 1 ثانية -->
           <p
-            class="mt-4 text-slate-200 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide display-font"
+            class="mt-4 text-slate-200 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide display-font reveal"
+            style="animation-delay: 1s"
           >
-            we arrive burdened <span class="text-[#D4AF37]">...</span> yet we stand.
+            we arrive burdened <span class="text-[#D4AF37]">...</span> yet we
+            stand.
           </p>
 
           <h2
-            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-red-600 display-font"
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-red-700 display-font reveal"
+            style="animation-delay: 1.2s"
           >
             Amid all pain, hope still shines
           </h2>
 
-          <div class="bg-black bg-opacity-30 p-4 sm:p-6 md:p-8 rounded-lg">
+          <div
+            class="bg-black bg-opacity-30 p-4 sm:p-6 md:p-8 rounded-lg reveal"
+            style="animation-delay: 1.4s"
+          >
             <p
               class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-slate-200"
             >
@@ -81,17 +152,20 @@
           </div>
 
           <p
-            class="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-[#D4AF37] display-font"
+            class="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-[#D4AF37] display-font reveal"
+            style="animation-delay: 1.6s"
           >
             Hope is resistance, and love is stronger than any war.
           </p>
         </div>
 
+        <!-- الساعة تظهر بعد 1 ثانية تقريبًا -->
         <div
-          class="clock flex space-x-3 md:space-x-6 mt-10 md:mt-0 justify-end items-center text-[#ffff]"
+          class="clock flex space-x-3 md:space-x-6 mt-10 md:mt-0 justify-end items-center text-white reveal"
+          style="animation-delay: 1.2s"
         >
           <div
-            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-80 border border-green-400 rounded-xl text-center"
+            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-80 border border-green-700 rounded-xl text-center"
           >
             <span
               class="hours text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-mono"
@@ -99,7 +173,7 @@
             >
           </div>
           <div
-            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-50 border border-green-400 rounded-xl text-center"
+            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-50 border border-green-700 rounded-xl text-center"
           >
             <span
               class="minutes text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-mono"
@@ -107,7 +181,7 @@
             >
           </div>
           <div
-            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-50 border border-green-400 rounded-xl text-center"
+            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-50 border border-green-700 rounded-xl text-center"
           >
             <span
               class="seconds text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-mono"
@@ -115,7 +189,7 @@
             >
           </div>
           <div
-            class="ampm px-4 py-3 md:px-6 md:py-4 bg-black bg-opacity-50 border border-green-400 rounded-xl text-center text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold"
+            class="ampm px-4 py-3 md:px-6 md:py-4 bg-black bg-opacity-50 border border-green-700 rounded-xl text-center text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold"
           >
             AM
           </div>
@@ -124,6 +198,7 @@
     </section>
 
     <script>
+      // الساعة
       function clock() {
         let data = new Date();
         let h = data.getHours();
@@ -148,8 +223,21 @@
 
         setTimeout(clock, 1000);
       }
-
       clock();
+      const title = document.querySelector(".typewriter");
+      const sentences = document.querySelectorAll(".reveal");
+
+      // إزالة caret بعد انتهاء الكتابة البطيئة
+      setTimeout(() => {
+        title.classList.add("no-caret");
+
+        // إظهار باقي النصوص تدريجيًا بعد انتهاء العنوان
+        sentences.forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.add("show");
+          }, index * 800); // كل جملة بعد 0.8 ثانية عن السابقة
+        });
+      }, 6000); // نفس مدة كتابة الجملة الأولى البطيئة
     </script>
   </body>
 </html>
