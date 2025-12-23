@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hope is renewed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .display-font {
+        font-family: "Aref Ruqaa Ink", serif;
+      }
+
+      /* أنيميشن جميل وبسيط للخلفية: تكبير بطيء + حركة خفيفة */
+      .bg-animation {
+        background-image: url('assets/jasmin-ne-pUPIuW3qtPg-unsplash.jpg');
+        background-size: cover;
+        background-position: center;
+        animation: slowZoom 40s infinite alternate ease-in-out,
+                   gentlePan 80s infinite linear;
+      }
+
+      @keyframes slowZoom {
+        0% { background-size: 110%; }
+        100% { background-size: 130%; }
+      }
+
+      @keyframes gentlePan {
+        0% { background-position: 50% 50%; }
+        50% { background-position: 60% 40%; }
+        100% { background-position: 50% 50%; }
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      class="relative min-h-screen bg-animation"
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+
+      <div
+        class="relative flex flex-col md:flex-row items-center justify-between min-h-screen px-6 md:px-16 lg:px-24 py-12"
+      >
+        <div class="max-w-xl text-left text-white space-y-4">
+          <h1
+            class="text-[#D4AF37] font-bold leading-tight text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl display-font"
+          >
+            Welcome 2026,
+          </h1>
+
+          <p
+            class="mt-4 text-slate-200 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wide display-font"
+          >
+            we arrive burdened <span class="text-[#D4AF37]">...</span> yet we stand.
+          </p>
+
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-red-600 display-font"
+          >
+            Amid all pain, hope still shines
+          </h2>
+
+          <div class="bg-black bg-opacity-30 p-4 sm:p-6 md:p-8 rounded-lg">
+            <p
+              class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-slate-200"
+            >
+              In Gaza, where hearts have grown weary before bodies,<br />
+              where the sky sometimes falls silent more than words,<br />
+              a small ray of light still persists.
+            </p>
+
+            <p
+              class="mt-4 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-slate-200"
+            >
+              Every tear, every moment of waiting,<br />
+              tells a story of resilience that knows no defeat.
+            </p>
+          </div>
+
+          <p
+            class="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-[#D4AF37] display-font"
+          >
+            Hope is resistance, and love is stronger than any war.
+          </p>
+        </div>
+
+        <div
+          class="clock flex space-x-3 md:space-x-6 mt-10 md:mt-0 justify-end items-center text-[#ffff]"
+        >
+          <div
+            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-80 border border-green-400 rounded-xl text-center"
+          >
+            <span
+              class="hours text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-mono"
+              >00</span
+            >
+          </div>
+          <div
+            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-50 border border-green-400 rounded-xl text-center"
+          >
+            <span
+              class="minutes text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-mono"
+              >00</span
+            >
+          </div>
+          <div
+            class="time-box px-6 py-4 md:px-10 md:py-6 bg-black bg-opacity-50 border border-green-400 rounded-xl text-center"
+          >
+            <span
+              class="seconds text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-mono"
+              >00</span
+            >
+          </div>
+          <div
+            class="ampm px-4 py-3 md:px-6 md:py-4 bg-black bg-opacity-50 border border-green-400 rounded-xl text-center text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold"
+          >
+            AM
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function clock() {
+        let data = new Date();
+        let h = data.getHours();
+        let m = data.getMinutes();
+        let s = data.getSeconds();
+        let flag = "AM";
+
+        if (h == 0) h = 12;
+        if (h > 12) {
+          h -= 12;
+          flag = "PM";
+        }
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        document.querySelector(".hours").innerText = h;
+        document.querySelector(".minutes").innerText = m;
+        document.querySelector(".seconds").innerText = s;
+        document.querySelector(".ampm").innerText = flag;
+
+        setTimeout(clock, 1000);
+      }
+
+      clock();
+    </script>
+  </body>
+</html>
