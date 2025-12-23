@@ -18,36 +18,39 @@
 
       /* الخلفية متحركة */
       .bg-animation {
-        background-image: url("assets/jasmin-ne-pUPIuW3qtPg-unsplash.jpg");
-        background-size: 110%;
+        background-image: url("https://static.vecteezy.com/system/resources/thumbnails/073/131/507/small/moonlit-jasmine-field-silver-serenity-photo.jpg");
+        background-size: contain; /* تظهر الصورة كاملة */
         background-position: center;
+        background-repeat: no-repeat;
         animation: backgroundZoomBrightness 20s infinite ease-in-out,
           backgroundPan 60s infinite alternate ease-in-out;
       }
 
+      /* تكبير/تصغير + سطوع */
       @keyframes backgroundZoomBrightness {
         0% {
-          background-size: 110%;
+          transform: scale(1);
           filter: brightness(1);
         }
         25% {
-          background-size: 115%;
+          transform: scale(1.03);
           filter: brightness(1.15);
         }
         50% {
-          background-size: 120%;
+          transform: scale(1.06);
           filter: brightness(1.25);
         }
         75% {
-          background-size: 115%;
+          transform: scale(1.03);
           filter: brightness(1.15);
         }
         100% {
-          background-size: 110%;
+          transform: scale(1);
           filter: brightness(1);
         }
       }
 
+      /* حركة بسيطة للأعلى والأسفل */
       @keyframes backgroundPan {
         0% {
           background-position: center top;
@@ -71,7 +74,6 @@
       }
 
       /* العنوان: ظهور حرف حرف بسلاسة + ظل */
-      /* العنوان: ظهور حرف حرف بشكل أبطأ + ظل */
       .typewriter {
         display: inline-block;
         white-space: nowrap;
@@ -79,18 +81,30 @@
         border-right: 0.15em solid #d4af37; /* caret */
         color: #d4af37;
         font-weight: bold;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* ظل */
-        font-size: 4rem;
-        animation: typing 6s linear forwards,
-          /* مدة أطول للكتابة → أبطأ */ blink-caret 0.75s step-end infinite;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        font-size: 4rem; /* يمكن تعديل حسب الحاجة */
+        animation: typing 3s linear forwards,
+          blink-caret 0.75s step-end infinite;
       }
 
+      /* ظهور تدريجي للعنوان */
       @keyframes typing {
         0% {
           width: 0;
         }
         100% {
           width: 100%;
+        }
+      }
+
+      /* blink caret */
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #d4af37;
         }
       }
 
